@@ -38,6 +38,7 @@ interface Tile2 {
   isTmpMonsterDown(): boolean;
   isMonsterLeft(): boolean;
   color(g: CanvasRenderingContext2D): void;
+  draw(g: CanvasRenderingContext2D, x: number, y: number): void;
 }
 class Air implements Tile2 {
   isAir(): boolean {
@@ -86,6 +87,7 @@ class Air implements Tile2 {
       return false;
   }
   color(g: CanvasRenderingContext2D) {}
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {}
 }
 class Unbreakable implements Tile2 {
   isAir(): boolean {
@@ -135,6 +137,10 @@ class Unbreakable implements Tile2 {
   }
   color(g: CanvasRenderingContext2D) {
     g.fillStyle = "#999999";
+  }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#999999";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
 }
 class Stone implements Tile2 {
@@ -186,6 +192,10 @@ class Stone implements Tile2 {
   color(g: CanvasRenderingContext2D) {
     g.fillStyle = "#0000cc";
   }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#0000cc";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
 }
 class Bomb implements Tile2 {
   isAir(): boolean {
@@ -235,6 +245,10 @@ class Bomb implements Tile2 {
   }
   color(g: CanvasRenderingContext2D) {
     g.fillStyle = "#770000";
+  }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#770000";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
 }
 class BombClose implements Tile2 {
@@ -286,6 +300,10 @@ class BombClose implements Tile2 {
   color(g: CanvasRenderingContext2D) {
     g.fillStyle = "#cc0000";
   }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#cc0000";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
 }
 class BombReallyClose implements Tile2 {
   isAir(): boolean {
@@ -335,6 +353,10 @@ class BombReallyClose implements Tile2 {
   }
   color(g: CanvasRenderingContext2D) {
     g.fillStyle = "#ff0000";
+  }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#ff0000";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
 }
 class ExtraBomb implements Tile2 {
@@ -386,6 +408,10 @@ class ExtraBomb implements Tile2 {
   color(g: CanvasRenderingContext2D) {
     g.fillStyle = "#00cc00";
   }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#00cc00";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
 }
 class Fire implements Tile2 {
   isAir(): boolean {
@@ -435,6 +461,10 @@ class Fire implements Tile2 {
   }
   color(g: CanvasRenderingContext2D) {
     g.fillStyle = "#ffcc00";
+  }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#ffcc00";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
 }
 class MonsterDown implements Tile2 {
@@ -486,6 +516,10 @@ class MonsterDown implements Tile2 {
   color(g: CanvasRenderingContext2D) {
       g.fillStyle = "#cc00cc";
   }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#cc00cc";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
 }
 class MonsterLeft implements Tile2 {
   isAir(): boolean {
@@ -535,6 +569,10 @@ class MonsterLeft implements Tile2 {
   }
   color(g: CanvasRenderingContext2D) {
       g.fillStyle = "#cc00cc";
+  }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#cc00cc";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
 }
 class MonsterRight implements Tile2 {
@@ -586,6 +624,10 @@ class MonsterRight implements Tile2 {
   color(g: CanvasRenderingContext2D) {
       g.fillStyle = "#cc00cc";
   }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#cc00cc";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
 }
 class MonsterUp implements Tile2 {
   isAir(): boolean {
@@ -636,6 +678,10 @@ class MonsterUp implements Tile2 {
   color(g: CanvasRenderingContext2D) {
       g.fillStyle = "#cc00cc";
   }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#cc00cc";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
 }
 class TmpFire implements Tile2 {
   isAir(): boolean {
@@ -684,6 +730,9 @@ class TmpFire implements Tile2 {
       return false;
   }
   color(g: CanvasRenderingContext2D) {}
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
 }
 class TmpMonsterDown implements Tile2 {
   isAir(): boolean {
@@ -732,6 +781,9 @@ class TmpMonsterDown implements Tile2 {
       return false;
   }
   color(g: CanvasRenderingContext2D) {}
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
 }
 class TmpMonsterRight implements Tile2 {
   isAir(): boolean {
@@ -780,6 +832,9 @@ class TmpMonsterRight implements Tile2 {
       return true;
   }
   color(g: CanvasRenderingContext2D) {}
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
 }
 enum RawInput {
   UP,
@@ -1114,9 +1169,7 @@ function createGraphics() {
 function drawMap(g: CanvasRenderingContext2D) {
   for (let y = 0; y < map.length; y++) {
     for (let x = 0; x < map[y].length; x++) {
-        map[y][x].color(g);
-        if (!map[y][x].isAir())
-        g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        map[y][x].draw(g, x, y);
     }
   }
 }
