@@ -39,6 +39,8 @@ interface Tile {
   isMonsterLeft(): boolean;
   color(g: CanvasRenderingContext2D): void;
   draw(g: CanvasRenderingContext2D, x: number, y: number): void;
+  isMovable(): boolean;
+  move(x: number, y: number): void;
 }
 class Air implements Tile {
   isAir(): boolean {
@@ -88,6 +90,13 @@ class Air implements Tile {
   }
   color(g: CanvasRenderingContext2D) {}
   draw(g: CanvasRenderingContext2D, x: number, y: number) {}
+  isMovable(): boolean {
+    return true;
+  }
+  move(x: number, y: number) {
+    playery += y;
+    playerx += x;
+  }
 }
 class Unbreakable implements Tile {
   isAir(): boolean {
@@ -142,6 +151,10 @@ class Unbreakable implements Tile {
     g.fillStyle = "#999999";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class Stone implements Tile {
   isAir(): boolean {
@@ -196,6 +209,10 @@ class Stone implements Tile {
     g.fillStyle = "#0000cc";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class Bomb implements Tile {
   isAir(): boolean {
@@ -250,6 +267,10 @@ class Bomb implements Tile {
     g.fillStyle = "#770000";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class BombClose implements Tile {
   isAir(): boolean {
@@ -304,6 +325,10 @@ class BombClose implements Tile {
     g.fillStyle = "#cc0000";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class BombReallyClose implements Tile {
   isAir(): boolean {
@@ -358,6 +383,10 @@ class BombReallyClose implements Tile {
     g.fillStyle = "#ff0000";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class ExtraBomb implements Tile {
   isAir(): boolean {
@@ -411,6 +440,15 @@ class ExtraBomb implements Tile {
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#00cc00";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {
+    playery += y;
+    playerx += x;
+    bombs++;
+    map[playery][playerx] = new Air();
   }
 }
 class Fire implements Tile {
@@ -466,6 +504,13 @@ class Fire implements Tile {
     g.fillStyle = "#ffcc00";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return true;
+  }
+  move(x: number, y: number) {
+    playery += y;
+    playerx += x;
+  }
 }
 class MonsterDown implements Tile {
   isAir(): boolean {
@@ -520,6 +565,10 @@ class MonsterDown implements Tile {
     g.fillStyle = "#cc00cc";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class MonsterLeft implements Tile {
   isAir(): boolean {
@@ -574,6 +623,10 @@ class MonsterLeft implements Tile {
     g.fillStyle = "#cc00cc";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class MonsterRight implements Tile {
   isAir(): boolean {
@@ -628,6 +681,10 @@ class MonsterRight implements Tile {
     g.fillStyle = "#cc00cc";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class MonsterUp implements Tile {
   isAir(): boolean {
@@ -682,6 +739,10 @@ class MonsterUp implements Tile {
     g.fillStyle = "#cc00cc";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class TmpFire implements Tile {
   isAir(): boolean {
@@ -733,6 +794,10 @@ class TmpFire implements Tile {
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class TmpMonsterDown implements Tile {
   isAir(): boolean {
@@ -784,6 +849,10 @@ class TmpMonsterDown implements Tile {
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 class TmpMonsterRight implements Tile {
   isAir(): boolean {
@@ -835,6 +904,10 @@ class TmpMonsterRight implements Tile {
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
+  isMovable(): boolean {
+    return false;
+  }
+  move(x: number, y: number) {}
 }
 enum RawInput {
   UP,
@@ -869,7 +942,7 @@ class Up implements Input {
       return false;
   }
   handle() {
-    move(0, -1);
+    map[playery - 1][playerx + 0].move(0, -1);
   }
 }
 
@@ -890,7 +963,7 @@ class Down implements Input {
       return false;
   }
   handle() {
-    move(0, 1);
+    map[playery + 1][playerx + 0].move(0, 1);
   }
 }
 
@@ -911,7 +984,7 @@ class Left implements Input {
       return false;
   }
   handle() {
-    move(-1, 0);
+    map[playery + 0][playerx - 1].move(-1, 0);
   }
 }
 
@@ -932,7 +1005,7 @@ class Right implements Input {
       return false;
   }
   handle() {
-    move(1, 0);
+    map[playery + 0][playerx + 1].move(1, 0);
   }
 }
 
@@ -1036,21 +1109,6 @@ function explodeTmpFire(x: number, y: number) {
     )
       bombs++;
     map[y][x] = new TmpFire();
-  }
-}
-
-function move(x: number, y: number) {
-  if (
-    map[playery + y][playerx + x].isAir() ||
-    map[playery + y][playerx + x].isFire()
-  ) {
-    playery += y;
-    playerx += x;
-  } else if (map[playery + y][playerx + x].isExtraBomb()) {
-    playery += y;
-    playerx += x;
-    bombs++;
-    map[playery][playerx] = new Air();
   }
 }
 
