@@ -30,16 +30,13 @@ interface Tile {
   isBombReallyClose(): boolean;
   isTmpFire(): boolean;
   isFire(): boolean;
-  isExtraBomb(): boolean;
   isMonsterUp(): boolean;
   isMonsterRight(): boolean;
   isTmpMonsterRight(): boolean;
   isMonsterDown(): boolean;
   isTmpMonsterDown(): boolean;
   isMonsterLeft(): boolean;
-  color(g: CanvasRenderingContext2D): void;
   draw(g: CanvasRenderingContext2D, x: number, y: number): void;
-  isMovable(): boolean;
   move(x: number, y: number): void;
 }
 class Air implements Tile {
@@ -59,9 +56,6 @@ class Air implements Tile {
       return false;
   }
   isBombReallyClose(): boolean {
-      return false;
-  }
-  isExtraBomb(): boolean {
       return false;
   }
   isFire(): boolean {
@@ -88,11 +82,7 @@ class Air implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {}
   draw(g: CanvasRenderingContext2D, x: number, y: number) {}
-  isMovable(): boolean {
-    return true;
-  }
   move(x: number, y: number) {
     playery += y;
     playerx += x;
@@ -117,9 +107,6 @@ class Unbreakable implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -144,15 +131,9 @@ class Unbreakable implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-    g.fillStyle = "#999999";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#999999";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -175,9 +156,6 @@ class Stone implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -202,15 +180,9 @@ class Stone implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-    g.fillStyle = "#0000cc";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#0000cc";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -233,9 +205,6 @@ class Bomb implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -260,15 +229,9 @@ class Bomb implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-    g.fillStyle = "#770000";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#770000";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -291,9 +254,6 @@ class BombClose implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -318,15 +278,9 @@ class BombClose implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-    g.fillStyle = "#cc0000";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#cc0000";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -349,9 +303,6 @@ class BombReallyClose implements Tile {
   isBombReallyClose(): boolean {
       return true;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -376,15 +327,9 @@ class BombReallyClose implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-    g.fillStyle = "#ff0000";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#ff0000";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -407,9 +352,6 @@ class ExtraBomb implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return true;
-  }
   isFire(): boolean {
       return false;
   }
@@ -434,15 +376,9 @@ class ExtraBomb implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-    g.fillStyle = "#00cc00";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#00cc00";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {
     playery += y;
@@ -470,9 +406,6 @@ class Fire implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return true;
   }
@@ -497,15 +430,9 @@ class Fire implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-    g.fillStyle = "#ffcc00";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#ffcc00";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return true;
   }
   move(x: number, y: number) {
     playery += y;
@@ -531,9 +458,6 @@ class MonsterDown implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -558,15 +482,9 @@ class MonsterDown implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-      g.fillStyle = "#cc00cc";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#cc00cc";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -589,9 +507,6 @@ class MonsterLeft implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -616,15 +531,9 @@ class MonsterLeft implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-      g.fillStyle = "#cc00cc";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#cc00cc";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -647,9 +556,6 @@ class MonsterRight implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -674,15 +580,9 @@ class MonsterRight implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-      g.fillStyle = "#cc00cc";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#cc00cc";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -705,9 +605,6 @@ class MonsterUp implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -732,15 +629,9 @@ class MonsterUp implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {
-      g.fillStyle = "#cc00cc";
-  }
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillStyle = "#cc00cc";
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -763,9 +654,6 @@ class TmpFire implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -790,12 +678,8 @@ class TmpFire implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {}
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -818,9 +702,6 @@ class TmpMonsterDown implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -845,12 +726,8 @@ class TmpMonsterDown implements Tile {
   isTmpMonsterRight(): boolean {
       return false;
   }
-  color(g: CanvasRenderingContext2D) {}
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -873,9 +750,6 @@ class TmpMonsterRight implements Tile {
   isBombReallyClose(): boolean {
       return false;
   }
-  isExtraBomb(): boolean {
-      return false;
-  }
   isFire(): boolean {
       return false;
   }
@@ -900,12 +774,8 @@ class TmpMonsterRight implements Tile {
   isTmpMonsterRight(): boolean {
       return true;
   }
-  color(g: CanvasRenderingContext2D) {}
   draw(g: CanvasRenderingContext2D, x: number, y: number) {
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isMovable(): boolean {
-    return false;
   }
   move(x: number, y: number) {}
 }
@@ -917,114 +787,34 @@ enum RawInput {
   PLACE,
 }
 interface Input {
-  isUp(): boolean;
-  isDown(): boolean;
-  isLeft(): boolean;
-  isRight(): boolean;
-  isPlace(): boolean;
   handle(): void;
 }
 
 class Up implements Input {
-  isUp(): boolean {
-      return true;
-  }
-  isDown(): boolean {
-      return false;
-  }
-  isLeft(): boolean {
-      return false;
-  }
-  isRight(): boolean {
-      return false;
-  }
-  isPlace(): boolean {
-      return false;
-  }
   handle() {
     map[playery - 1][playerx + 0].move(0, -1);
   }
 }
 
 class Down implements Input {
-  isUp(): boolean {
-      return false;
-  }
-  isDown(): boolean {
-      return true;
-  }
-  isLeft(): boolean {
-      return false;
-  }
-  isRight(): boolean {
-      return false;
-  }
-  isPlace(): boolean {
-      return false;
-  }
   handle() {
     map[playery + 1][playerx + 0].move(0, 1);
   }
 }
 
 class Left implements Input {
-  isUp(): boolean {
-      return false;
-  }
-  isDown(): boolean {
-      return false;
-  }
-  isLeft(): boolean {
-      return true;
-  }
-  isRight(): boolean {
-      return false;
-  }
-  isPlace(): boolean {
-      return false;
-  }
   handle() {
     map[playery + 0][playerx - 1].move(-1, 0);
   }
 }
 
 class Right implements Input {
-  isUp(): boolean {
-      return false;
-  }
-  isDown(): boolean {
-      return false;
-  }
-  isLeft(): boolean {
-      return false;
-  }
-  isRight(): boolean {
-      return true;
-  }
-  isPlace(): boolean {
-      return false;
-  }
   handle() {
     map[playery + 0][playerx + 1].move(1, 0);
   }
 }
 
 class Place implements Input {
-  isUp(): boolean {
-      return false;
-  }
-  isDown(): boolean {
-      return false;
-  }
-  isLeft(): boolean {
-      return false;
-  }
-  isRight(): boolean {
-      return false;
-  }
-  isPlace(): boolean {
-      return true;
-  }
   handle() {
     placeBomb();
   }
